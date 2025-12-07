@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Resume Builder</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+  <div id="app" class="min-h-screen p-6">
+    <h1 class="text-2xl font-bold mb-4">AI Resume Builder — Demo</h1>
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-5 bg-white p-4 rounded shadow" id="formArea">
+        <form id="resumeForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium">Full name</label>
+            <input id="name" placeholder="Ada Lovelace" class="w-full border rounded p-2" />
+            <small class="text-xs text-gray-500">As you want it to appear on the resume</small>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Target Job Title</label>
+            <input id="title" placeholder="Junior Software Engineer" class="w-full border rounded p-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Summary / Headline</label>
+            <textarea id="summary" placeholder="2–3 sentence pitch about you" class="w-full border rounded p-2"></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Skills (comma-separated)</label>
+            <input id="skills" placeholder="JavaScript, React, Python" class="w-full border rounded p-2" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium">Job Description (for matching)</label>
+            <textarea id="jobDesc" placeholder="Paste job description here" class="w-full border rounded p-2"></textarea>
+          </div>
+          <div class="flex gap-2">
+            <button id="generateSummary" type="button" class="px-3 py-2 bg-blue-600 text-white rounded">Generate Summary</button>
+            <button id="matchJob" type="button" class="px-3 py-2 bg-green-600 text-white rounded">Match to Job</button>
+            <button id="saveDraft" type="button" class="px-3 py-2 bg-gray-600 text-white rounded">Save Draft</button>
+            <button id="loadDraft" type="button" class="px-3 py-2 bg-gray-400 text-black rounded">Load Draft</button>
+          </div>
+          <div class="flex gap-2 mt-2">
+            <button id="exportPdf" type="button" class="px-3 py-2 bg-indigo-600 text-white rounded">Export PDF</button>
+            <button id="exportDocx" type="button" class="px-3 py-2 bg-yellow-600 text-white rounded">Export DOCX</button>
+          </div>
+        </form>
+      </div>
+      <div class="col-span-7 bg-white p-4 rounded shadow" id="previewArea">
+        <div id="resumePreview">Resume preview will appear here</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- libraries for export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.2/docx.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+
+  <script src="app.js"></script>
+</body>
+</html>
