@@ -1,0 +1,26 @@
+/* styles.css - simple, ATS-safe styling */
+
+:root {
+  --accent-color: #2563eb;
+  --base-font-size: 13px;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f9fafb;
+}
+
+#resumePreview {
+  font-size: var(--base-font-size);
+  line-height: 1.5;
+  color: #111827;
+}
+
+#resumePreview h2 {
+  color: var(--accent-color);
+}
+
+#resumePreview h3 {
+  margin-top: 12px;
+  font-weight: bold;
+}
