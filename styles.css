@@ -1,138 +1,108 @@
 /* Root Variables */
 :root {
-  --accent-color: #ff6b6b;
-  --accent-color2: #f59e0b;
-  --card-bg: rgba(255, 255, 255, 0.95);
-  --shadow: rgba(0,0,0,0.25);
+  --black: #0a0a0a;
+  --white: #f5f5f5;
+  --silver: #c0c0c0;
+  --gold: #ffd700;
+  --shadow: rgba(0,0,0,0.3);
   --font-family: 'Poppins', sans-serif;
 }
 
 /* Global */
 body, html {
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
   font-family: var(--font-family);
+  background: var(--black);
+  color: var(--white);
   overflow-x: hidden;
-  height: 100%;
-  background: #0e0e0e;
 }
 
-header {
+/* Landing Page */
+#landingPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(45deg, #000000, #222222);
   text-align: center;
-  padding: 50px 20px;
-  background: linear-gradient(135deg, #ff6b6b, #f59e0b, #2563eb);
-  background-size: 300% 300%;
-  color: white;
-  animation: headerGradient 10s ease infinite;
 }
+.landing-container { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 50px; }
+.landing-content h1 { font-size: 3rem; margin-bottom: 20px; }
+.landing-content p { font-size: 1.3rem; margin-bottom: 30px; }
+.landing-content button {
+  background: var(--gold);
+  color: var(--black);
+  padding: 15px 25px;
+  font-size: 1.2rem;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.landing-content button:hover { transform: scale(1.05); box-shadow: 0 10px 25px var(--shadow); }
+.landing-animation .avatar {
+  font-size: 6rem;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateY(0);}50%{transform:translateY(-20px);} }
 
-header h1 { font-size: 2.5rem; margin:0; }
+/* Hide resumeBuilder initially */
+#resumeBuilder { display: none; padding-bottom: 50px; }
+
+/* Header */
+header { text-align: center; padding: 50px 20px; }
+header h1 { font-size: 2.5rem; margin: 0; color: var(--silver); }
 header p { font-weight: 300; font-size: 1.2rem; }
 
-@keyframes headerGradient {
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
-/* Container */
+/* Container & Cards */
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  padding: 40px 20px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;
+  padding: 0 20px;
 }
-
-/* Cards */
 .card {
-  background: var(--card-bg);
+  background: #111;
   border-radius: 20px;
   padding: 30px;
   box-shadow: 0 10px 30px var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   perspective: 1000px;
 }
-
-.card:hover {
-  transform: rotateY(5deg) translateY(-10px);
-  box-shadow: 0 20px 50px var(--shadow);
-}
-
+.card:hover { transform: rotateY(5deg) translateY(-10px); box-shadow: 0 20px 50px var(--shadow); }
 .form-card { flex: 1 1 350px; max-width: 400px; }
 .preview-card { flex: 1 1 450px; max-width: 550px; }
 
 /* Form Inputs */
 form label { font-weight: bold; margin-top: 15px; display: block; }
-form input, form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-top: 5px;
-  border-radius: 10px;
-  border: none;
-  background: rgba(255,255,255,0.8);
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+form input, form textarea, select {
+  width: 100%; padding: 12px; margin-top: 5px;
+  border-radius: 10px; border: none;
+  background: #222;
+  color: var(--white);
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.2);
 }
-
-form input:focus, form textarea:focus {
-  transform: scale(1.02);
-  box-shadow: 0 0 15px var(--accent-color);
+form input:focus, form textarea:focus, select:focus {
   outline: none;
+  box-shadow: 0 0 10px var(--gold);
+  transform: scale(1.02);
 }
 
 /* Buttons */
 .button-group { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
-button {
-  flex: 1 1 auto;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: bold;
-  cursor: pointer;
-  border: none;
-  background: linear-gradient(45deg, var(--accent-color), var(--accent-color2));
-  color: white;
-  transition: transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 25px var(--shadow);
-  background: linear-gradient(45deg, var(--accent-color2), var(--accent-color));
-}
+button { flex:1 1 auto; padding:12px; border-radius:12px; font-weight:bold; cursor:pointer; border:none; background: var(--silver); color: var(--black); transition: transform 0.2s ease, box-shadow 0.3s ease; }
+button:hover { transform: scale(1.05); box-shadow: 0 8px 25px var(--shadow); }
 
 /* Resume Preview */
-#resumePreview h2, #resumePreview h3, #resumePreview p, #resumePreview span {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideIn 0.5s forwards;
-}
-@keyframes slideIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Skills / badges */
-.badge {
-  display: inline-block;
-  background: var(--accent-color);
-  color: white;
-  padding: 5px 12px;
-  border-radius: 12px;
-  margin: 4px 4px 4px 0;
-  font-size: 0.9rem;
-  animation: badgePop 0.4s ease forwards;
-}
-
+#resumePreview { padding: 20px; border-radius: 15px; }
+.badge { display: inline-block; padding:5px 12px; border-radius:12px; margin: 4px; animation: badgePop 0.4s ease forwards; }
 @keyframes badgePop { 0% { transform: scale(0); } 100% { transform: scale(1); } }
 
-/* Animated background canvas */
-#bgCanvas {
-  position: fixed;
-  top:0; left:0;
-  width:100%;
-  height:100%;
-  z-index:-1;
-}
+/* Templates */
+.template1 { background: #111; color: var(--silver); font-family:'Poppins',sans-serif; }
+.template1 h2 { color: var(--gold); }
+.template2 { background: #1a1a1a; color: var(--silver); font-family:'Georgia',serif; border:2px solid var(--silver);}
+.template2 h2 { color: var(--silver); }
+.template3 { background: #222; color: var(--gold); font-family:'Courier New', monospace; text-shadow:1px 1px 2px #000; }
+.template3 h2 { font-size:2.2rem; }
 
 /* Responsive */
 @media(max-width:900px){ .container{flex-direction:column;align-items:center;} }
