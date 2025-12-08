@@ -1,20 +1,29 @@
 const resumeForm = document.getElementById("resumeForm");
 const resumePreview = document.getElementById("resumePreview");
 
-// Update preview with animation
+// Landing page button
+document.getElementById("startBtn").addEventListener("click", ()=>{
+  document.getElementById("landingPage").style.display="none";
+  document.getElementById("resumeBuilder").style.display="block";
+});
+
+// Update preview with template selection
 function updatePreview() {
   const name = document.getElementById("name").value || "Your Name";
-  const title = document.getElementById("title").value || "Your Job Title";
+  const title = document.getElementById("title").value || "Job Title";
   const summary = document.getElementById("summary").value || "Professional summary here.";
   const skills = document.getElementById("skills").value.split(",").map(s => s.trim()).filter(Boolean);
   const education = document.getElementById("education").value || "Education here";
   const certificates = document.getElementById("certificates").value || "Certificates here";
   const languages = document.getElementById("languages").value || "Languages here";
 
+  // Apply template class
+  const selectedTemplate = document.getElementById("templateSelect").value;
+  resumePreview.className = "";
+  resumePreview.classList.add(selectedTemplate);
+
   let skillHTML = "";
-  skills.forEach((s,i) => {
-    skillHTML += `<span class="badge" style="animation-delay:${i*0.1}s">${s}</span>`;
-  });
+  skills.forEach((s,i) => { skillHTML += `<span class="badge" style="animation-delay:${i*0.1}s">${s}</span>`; });
 
   resumePreview.innerHTML = `
     <h2>${name} — ${title}</h2>
@@ -29,13 +38,10 @@ function updatePreview() {
 // Save/load draft
 function saveDraft() {
   const data = {};
-  ["name","title","summary","skills","education","certificates","languages","jobDesc"].forEach(id => {
-    data[id] = document.getElementById(id).value;
-  });
+  ["name","title","summary","skills","education","certificates","languages","jobDesc"].forEach(id => { data[id]=document.getElementById(id).value; });
   localStorage.setItem("resumeDraft", JSON.stringify(data));
   alert("Draft saved!");
 }
-
 function loadDraft() {
   const data = JSON.parse(localStorage.getItem("resumeDraft"));
   if(!data){ alert("No draft found!"); return; }
@@ -98,44 +104,3 @@ document.getElementById("exportDocx").addEventListener("click", exportDocx);
 
 // Initial preview
 updatePreview();
-
-// ------------------------
-// Background particles
-// ------------------------
-const canvas = document.getElementById("bgCanvas");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-for(let i=0;i<100;i++){
-  particles.push({
-    x: Math.random()*canvas.width,
-    y: Math.random()*canvas.height,
-    radius: Math.random()*4+1,
-    dx: (Math.random()-0.5)*1,
-    dy: (Math.random()-0.5)*1
-  });
-}
-
-function animate(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.radius,0,Math.PI*2);
-    ctx.fillStyle="rgba(255,255,255,0.6)";
-    ctx.fill();
-    p.x += p.dx; p.y += p.dy;
-    if(p.x>canvas.width)p.x=0;
-    if(p.x<0)p.x=canvas.width;
-    if(p.y>canvas.height)p.y=0;
-    if(p.y<0)p.y=canvas.height;
-  });
-  requestAnimationFrame(animate);
-}
-animate();
-
-window.addEventListener("resize", ()=>{
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
