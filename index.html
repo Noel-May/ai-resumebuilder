@@ -14,21 +14,32 @@
   <!-- JS Libraries -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
   <script src="app.js" defer></script>
 </head>
 <body>
-  <!-- Full-screen animated background -->
-  <canvas id="bgCanvas"></canvas>
 
-  <!-- Header -->
-  <header>
-    <h1>Resume Maker</h1>
-    <p>Create professional resumes easily and creatively</p>
-  </header>
+  <!-- Landing Page Section -->
+  <section id="landingPage">
+    <div class="landing-container">
+      <div class="landing-content">
+        <h1>🖋️ Create Your Resume in Minutes!</h1>
+        <p>Welcome to Resume Maker – Generate sleek, professional resumes with ease.</p>
+        <button id="startBtn"><i class="fas fa-arrow-right"></i> Start Creating</button>
+      </div>
+      <div class="landing-animation">
+        <!-- Animated avatar or object -->
+        <div class="avatar">💼</div>
+      </div>
+    </div>
+  </section>
 
-  <!-- Main content -->
-  <main>
+  <!-- Resume Builder Section -->
+  <section id="resumeBuilder">
+    <header>
+      <h1>Resume Maker</h1>
+      <p>Fill your details below and watch your live resume preview update!</p>
+    </header>
+
     <div class="container">
       
       <!-- Form Card -->
@@ -59,6 +70,13 @@
           <label>Job Description (for Match Job):</label>
           <textarea id="jobDesc" placeholder="Paste job description here"></textarea>
 
+          <label>Select Resume Template:</label>
+          <select id="templateSelect">
+            <option value="template1">Template 1 - Sleek Black</option>
+            <option value="template2">Template 2 - Silver Classic</option>
+            <option value="template3">Template 3 - Gold Premium</option>
+          </select>
+
           <!-- Buttons -->
           <div class="button-group">
             <button type="button" id="saveDraft"><i class="fas fa-save"></i> Save Draft</button>
@@ -77,6 +95,7 @@
       </div>
 
     </div>
-  </main>
+  </section>
+
 </body>
 </html>
